@@ -2,10 +2,13 @@ name: Build
 on: [push]
 jobs:
     Build:
+         #If build failed on some OS
+        continue-on-error: true
+        #Various OS
         strategy:
             matrix:
-                os: ["ubuntu-latest","windows-latest","macos-latest"]
-        runs-on: [os]
+                os: [ubuntu-latest,windows-latest, macos-latest]
+        runs-on: ${{matrix.os}}
         steps:
             - name: test
               run: echo "Hi"

@@ -4,5 +4,15 @@
 #include <queue>
 class EventHandler{
 private:
-
+    static EventHandler * instance;
+    std::vector<Event*> events;
+public:
+    EventHandler(const EventHandler&) = delete;
+    ~EventHandler(){instance = nullptr;}
+    static EventHandler * GetInstance();
+private:
+    EventHandler() = default;
+public:
+    void Bind();
 };
+EventHandler* EventHandler::instance = nullptr;
